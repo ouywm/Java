@@ -1,15 +1,38 @@
 package com.itheima.generics;
 
+import java.util.ArrayList;
+
 public class GenericsDemo5 {
 	/*
 		泛型通配符
+
+
+				? : 任意类型
 	 */
 	public static void main(String[] args) {
 
 
+		ArrayList<Coder> list1 = new ArrayList<>();
+		list1.add(new Coder());
+
+		ArrayList<Manager> list2 = new ArrayList<>();
+		list2.add(new Manager());
+
+		method(list1);
+		method(list2);
+
+	}
+
+	public static void method(ArrayList<?> list) {
+		for (Object o : list) {
+			//向下转型，将Object转换成两个子类的父类
+			Employee e = (Employee) o;
+			e.work();
+		}
 	}
 }
 
+//员工类
 abstract class Employee {
 	private String name;
 	private double salary;
@@ -35,7 +58,6 @@ abstract class Employee {
 
 	/**
 	 * 设置
-	 *
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -52,7 +74,6 @@ abstract class Employee {
 
 	/**
 	 * 设置
-	 *
 	 */
 	public void setSalary(double salary) {
 		this.salary = salary;
@@ -63,6 +84,7 @@ abstract class Employee {
 	}
 }
 
+//程序员类
 class Coder extends Employee {
 	@Override
 	public void work() {
@@ -70,6 +92,7 @@ class Coder extends Employee {
 	}
 }
 
+//项目经理类
 class Manager extends Employee {
 
 	@Override

@@ -10,11 +10,15 @@ public class GenericsDemo2 {
 			K : ket 表示键
 			V : Value 表示值
 
-		泛型类演示
+		泛型类 : 创建对象的时候
+
+		我们在编写的时候，不确定要给他这个什么类型，那么就把这个问题抛给别人，就是让我们的调用者来确定
+		在创建对象的时候，就可以确定泛型的类型
 	 */
 
 	public static void main(String[] args) {
 
+		Student<String> stu = new Student<String>();
 
 
 	}
@@ -22,5 +26,13 @@ public class GenericsDemo2 {
 
 
 class Student<E>{
+	private E e;
 
+	public E getE() {
+		return e;
+	}
+
+	public void setE(E e) {
+		this.e = e;
+	}
 }

@@ -22,6 +22,8 @@ abstract class Employee {
 		this.salary = salary;
 	}
 
+	public abstract void work();
+
 	/**
 	 * 获取
 	 *
@@ -62,7 +64,16 @@ abstract class Employee {
 }
 
 class Coder extends Employee {
+	@Override
+	public void work() {
+		System.out.println("程序员写代码...");
+	}
 }
 
 class Manager extends Employee {
+
+	@Override
+	public void work() {
+		System.out.println("项目经理分配任务...");
+	}
 }

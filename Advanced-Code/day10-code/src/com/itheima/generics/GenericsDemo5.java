@@ -6,7 +6,6 @@ public class GenericsDemo5 {
 	/*
 		泛型通配符
 
-
 				? : 任意类型
 	 */
 	public static void main(String[] args) {
@@ -18,12 +17,19 @@ public class GenericsDemo5 {
 		ArrayList<Manager> list2 = new ArrayList<>();
 		list2.add(new Manager());
 
+		ArrayList<String> list3 = new ArrayList<>();
+		list3.add("abc");
+
+
 		method(list1);
 		method(list2);
-
 	}
 
-	public static void method(ArrayList<?> list) {
+	// 因为 "?" 是通配符，什么都可以往里面进去，这样好吗？？一点也不好，那我给他设置参数的时候，就给他
+	//设置任意的，但是是继承Employee这个类的才可以往里面进去，
+
+
+	public static void method(ArrayList<? extends Employee> list) {
 		for (Object o : list) {
 			//向下转型，将Object转换成两个子类的父类
 			Employee e = (Employee) o;

@@ -7,9 +7,10 @@ public class GenericsDemo5 {
 		泛型通配符
 
 				? : 任意类型
+				? extends Employee 指的是任意类型的Employee或者他的子类
+				? super Employee 指的是Employee和他的父类
 	 */
 	public static void main(String[] args) {
-
 
 		ArrayList<Coder> list1 = new ArrayList<>();
 		list1.add(new Coder());
@@ -20,9 +21,12 @@ public class GenericsDemo5 {
 		ArrayList<String> list3 = new ArrayList<>();
 		list3.add("abc");
 
+		ArrayList<Object> list4 = new ArrayList<>();
+		list4.add(new Object());
 
 		method(list1);
 		method(list2);
+
 	}
 
 	// 因为 "?" 是通配符，什么都可以往里面进去，这样好吗？？一点也不好，那我给他设置参数的时候，就给他
@@ -38,6 +42,7 @@ public class GenericsDemo5 {
 	}
 }
 
+
 //员工类
 abstract class Employee {
 	private String name;
@@ -51,6 +56,7 @@ abstract class Employee {
 		this.salary = salary;
 	}
 
+	//里面的抽象方法
 	public abstract void work();
 
 	/**

@@ -28,6 +28,11 @@ public class Student<Student> implements Comparable<Student> {
 	public Student() {
 	}
 
+	/**
+	 * 姓名跟年龄呗！！
+	 * @param name
+	 * @param age
+	 */
 	public Student(String name, int age) {
 		this.name = name;
 		this.age = age;
@@ -69,6 +74,10 @@ public class Student<Student> implements Comparable<Student> {
 		this.age = age;
 	}
 
+	/**
+	 *
+	 * @return 打印对象名，就不会看到地址值了，因为重写了toString
+	 */
 	public String toString() {
 		return "Student{name = " + name + ", age = " + age + "}";
 	}

@@ -24,13 +24,14 @@ public class GenericsDemo5 {
 		ArrayList<Object> list4 = new ArrayList<>();
 		list4.add(new Object());
 
+
 		method(list1);
 		method(list2);
 
 	}
 
 	// 因为 "?" 是通配符，什么都可以往里面进去，这样好吗？？一点也不好，那我给他设置参数的时候，就给他
-	//设置任意的，但是是继承Employee这个类的才可以往里面进去，
+	//设置任意的，但是是继承Employee这个类的才可以往里面进去
 
 
 	public static void method(ArrayList<? extends Employee> list) {

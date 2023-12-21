@@ -17,7 +17,8 @@ public class TerrSetDemo2 {
 		ts.add(new Student("张三", 23));
 		ts.add(new Student("李四", 22));
 		ts.add(new Student("赵六", 20));
-		System.out.println(ts);
 
+
+		System.out.println(ts);
 	}
 }

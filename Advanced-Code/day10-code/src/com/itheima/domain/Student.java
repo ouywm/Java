@@ -15,12 +15,25 @@ public class Student implements Comparable<Student> {
 	  -1就是倒序输出
 	  返回值影响添加
 	 */
+	// 取出的顺序 : 左，中，右
+
+	// this指的是要比较的对象的age，o.age是当前要添加的
+	// 当前的对象应该是父节点，要添加的就是添加到父节点下面的，
+	// 根据减去后的值，来决定在左边还是在右边
+	// this.xxx - o.xxx 正序
+	// o.xxx -this.xxx 倒序
 	@Override
 	public int compareTo(Student o) {
 		// 0 表示一样的，一样的就不添加
 		// 1 表示是比根节点更大的值，就比右边大了，都往右边走，输出我们看到的就是正序
 		// -1 就是比根节点更小的喽，往左边走，所以我们看到的就是倒序
-		return this.age - o.age;
+
+
+		// 根据年龄做主要排序，如果年龄相同姓名是次要排序
+		int ageResult = o.age - this.age;
+		int Result = ageResult == 0 ? o.name.compareTo(this.name) : ageResult;
+
+		return Result;
 	}
 
 	private String name;

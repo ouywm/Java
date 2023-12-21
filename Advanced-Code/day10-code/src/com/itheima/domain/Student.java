@@ -30,10 +30,18 @@ public class Student implements Comparable<Student> {
 
 
 		// 根据年龄做主要排序，如果年龄相同姓名是次要排序
+		// 定义一个age结果变量来接收
+		// o.age - this.age == 0 如果这样写，那万一有同学的年龄是相同的，那就添加不了了啊
+		// 就要添加新的条件，新的条件为姓名
 		int ageResult = o.age - this.age;
-		int Result = ageResult == 0 ? o.name.compareTo(this.name) : ageResult;
+		// 当计算出来的结果是0，就是有相同的年龄喽，这里用的是三元运算，三个表达式
+		// 结果是0 就拿姓名来做比较
+		int nameResult = ageResult == 0 ?  o.name.compareTo(this.name) : ageResult;
+		// 会有相同姓名跟相同年龄的同学出现，如果代码走到这里的话，那我们就给他的返回值 设定 1，
+		// 就可将这相同姓名和相同年龄的同学存储到集合里面的了
+		int result = nameResult == 0 ? 1 : nameResult;
 
-		return Result;
+		return result;
 	}
 
 	private String name;

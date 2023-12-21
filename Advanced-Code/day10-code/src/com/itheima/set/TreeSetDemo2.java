@@ -4,7 +4,7 @@ import com.itheima.domain.Student;
 
 import java.util.TreeSet;
 
-public class TerrSetDemo2 {
+public class TreeSetDemo2 {
 	/*
 		TreeSet集合储存Student学生对象
 

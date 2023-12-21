@@ -1,5 +1,11 @@
 package com.itheima.domain;
 
+/**
+ * 这里的泛型表示，要比较的对象，接口的泛型就跟着类走呗
+ * 这个接口有个泛型，因为人家也不知道你要拿啥类型的来做比较，
+ * 就随便你了呗，由你决定哈哈
+ * @param <Student>
+ */
 public class Student<Student> implements Comparable<Student> {
 
 	/**

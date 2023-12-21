@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jsoup" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jsoup" target="17" />
       <module name="one" target="17" />
       <module name="Test" target="17" />
     </bytecodeTargetLevel>

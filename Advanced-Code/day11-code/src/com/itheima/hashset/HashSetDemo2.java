@@ -10,6 +10,14 @@ public class HashSetDemo2 {
 	 */
 
 	public static void main(String[] args) {
+
 		HashSet<Student> hs = new HashSet<>();
+		hs.add(new Student("张三",23));
+		hs.add(new Student("李四",24));
+		hs.add(new Student("王五",25));
+		hs.add(new Student("王五",25));
+
+		System.out.println(hs);
+
 	}
 }

@@ -1,5 +1,7 @@
 package com.itheima.hashset;
 
+import java.util.HashSet;
+
 public class HashSetDemo1 {
 	/*
 		HashSet集合的基本使用
@@ -10,5 +12,16 @@ public class HashSetDemo1 {
 	 */
 	public static void main(String[] args) {
 
+		HashSet<String> hs = new HashSet<>();
+		hs.add("d");
+		hs.add("c");
+		hs.add("a");
+		hs.add("b");
+		hs.add("b");
+		hs.add("b");
+		hs.add("b");
+
+
+		System.out.println(hs);
 	}
 }

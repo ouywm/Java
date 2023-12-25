@@ -7,7 +7,7 @@ public class HashSetDemo4 {
 	/*
 		TREEIFY_THRESHOLD代表着阈值8
 
-		for (int binCount = 0; ; ++binCount) {
+			for (int binCount = 0; ; ++binCount) {
                     if ((e = p.next) == null) {
                         p代表着当前元素p.next是获取下一个意思
                         p.next = newNode(hash, key, value, null);

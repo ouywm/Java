@@ -16,5 +16,6 @@ public class hashDemo {
 
 		HashSet<Student> hs = new HashSet<>();
 		hs.add(new Student("1",1));
+		System.out.println(hs);
 	}
 }

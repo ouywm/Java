@@ -2,11 +2,15 @@ package com.itheima.dmain;
 
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student>{
 	private String name;
 	private int age;
 
 	public Student() {
+	}
+	@Override
+	public int compareTo(Student o) {
+		return this.age - o.age;
 	}
 
 	public Student(String name, int age) {
@@ -90,4 +94,6 @@ public class Student {
 	public String toString() {
 		return "Student{name = " + name + ", age = " + age + "}";
 	}
+
+
 }

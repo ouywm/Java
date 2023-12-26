@@ -14,6 +14,9 @@ public class CollectionsDemo {
 		public static <T> void max/min(Collection<T>coll) 根据默认的自然排序获取最大最小值
 		public static <T> void swap (List<?> list,iny i,int j) 交换集合中只带你位置的元素
 	 */
+
+
+
 	public static void main(String[] args) {
 		//批量添加
 		ArrayList<String> list = new ArrayList<>();
@@ -50,4 +53,5 @@ public class CollectionsDemo {
 		});
 		System.out.println(box);
 	}
+
 }

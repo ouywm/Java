@@ -14,7 +14,7 @@ public class CollectionsDemo {
 	public static void main(String[] args) {
 		//批量添加
 		ArrayList<String> list = new ArrayList<>();
-		Collections.addAll(list,"a","b","c","d");
+		Collections.addAll(list, "a", "b", "c", "d");
 		System.out.println(list);
 
 		// 二分查找(前提：必须是排序好的)
@@ -23,5 +23,12 @@ public class CollectionsDemo {
 		//打乱list集合对象的顺序，就是字面意思，跟洗牌差不多
 		Collections.shuffle(list);
 		System.out.println(list);
+
+
+		ArrayList<Integer> nums = new ArrayList<>();
+		//从集合中找最值
+		Collections.addAll(nums, 1, 2, 3, 4, 5);
+		System.out.println(Collections.max(nums));
+		System.out.println(Collections.min(nums));
 	}
 }

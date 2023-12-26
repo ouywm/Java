@@ -7,15 +7,13 @@ public class ArgsDemo {
 
 		数据类型...变量名
 
-		其实就是用了一个数组来接收，来达到可变参数的效果
+		其实就是用了一个数组来接收，由这个数组来接收传入的参数，来达到可变参数的效果
+		int[] arr = {}; 差不多跟这一样
+
 
 	 */
 	public static void main(String[] args) {
 
-		System.out.println(getSum(1, 2));
-
-
-		System.out.println(getString("1","1"));
 	}
 
 	public static int getSum(int... nums) {

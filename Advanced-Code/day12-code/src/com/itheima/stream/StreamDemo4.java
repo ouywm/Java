@@ -1,6 +1,7 @@
 package com.itheima.stream;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,7 +20,6 @@ public class StreamDemo4 {
     public static void main(String[] args) {
 
         List<Integer> list1 = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).filter(s -> s % 2 == 0).collect(Collectors.toList());
-
         System.out.println(list1);
 
 

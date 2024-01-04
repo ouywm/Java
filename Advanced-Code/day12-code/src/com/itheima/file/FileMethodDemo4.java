@@ -14,13 +14,13 @@ public class FileMethodDemo4 {
                             - delete 方法删除文件夹, 只能删除空的文件夹.
      */
     public static void main(String[] args) throws IOException {
-        File f1 = new File("src\\com\\itheima\\day12\\B.txt");
+        File f1 = new File("day12-code\\src\\com\\itheima\\B.txt");
         System.out.println(f1.createNewFile());
 
-        File f2 = new File("src\\com\\itheima\\day12\\aaa");
+        File f2 = new File("day12-code\\src\\com\\itheima\\aaa\\bbb\\ccc");
         System.out.println(f2.mkdirs());
 
-        File f3 = new File("src\\com\\itheima\\day12\\C.txt");
+        File f3 = new File("day12-code\\src\\com\\itheima\\C.txt");
         System.out.println(f3.mkdirs());
 
         System.out.println(f1.delete());

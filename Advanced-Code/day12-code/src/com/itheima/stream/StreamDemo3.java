@@ -11,6 +11,7 @@ public class StreamDemo3 {
 			public long count () 返回此流中的元素数
 	 */
 	public static void main(String[] args) {
+		// stream差不多跟电子厂流水线一样 of 是批量添加，filter是过滤条件 count计数，返回这个流中的元素
 		long count = Stream.of(1, 2, 3, 4, 5, 6).filter(s -> s % 2 == 0).count();
 		System.out.println(count);
 	}

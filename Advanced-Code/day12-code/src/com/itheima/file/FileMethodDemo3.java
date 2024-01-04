@@ -25,24 +25,36 @@ public class FileMethodDemo3 {
      */
     public static void main(String[] args) {
         File f1 = new File("D:\\A.txt");
+        // 判断是不是文件夹
         System.out.println(f1.isDirectory());       // false
+        // 判断是不是文件
         System.out.println(f1.isFile());            // true
+        // 判断是否存在
         System.out.println(f1.exists());            // true
 
         System.out.println("----------------------");
 
         File f2 = new File("D:\\test");
 
+        // 返回字节
         System.out.println(f1.length());
         System.out.println(f2.length());
 
         System.out.println("----------------------");
 
+
         File f3 = new File("A.txt");
+        // 获取绝对路径
         System.out.println(f3.getAbsolutePath());
 
         System.out.println("----------------------");
+        // 获取创建对象，传入构造方法的值，有点鸡肋，构造方法里面写啥，就获取啥
+        System.out.println(f1.getPath());
+        System.out.println(f2.getPath());
+        System.out.println(f3.getPath());
 
+        System.out.println("----------------------");
+        // 返回文件夹或者文件名字，是文件会带有后缀
         System.out.println(f1.getName());
         System.out.println(f2.getName());
         System.out.println(f3.getName());

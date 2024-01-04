@@ -4,31 +4,32 @@ import java.io.File;
 import java.util.Scanner;
 
 public class FileTest1 {
-    /*
-        需求: 键盘录入一个文件夹路径，如果输入错误就给出提示，并继续录入，直到正确为止
-     */
-    public static void main(String[] args) {
+	/*
+		需求: 键盘录入一个文件夹路径，如果输入错误就给出提示，并继续录入，直到正确为止
+	 */
+	public static void main(String[] args) {
 
-        File dir = getDir();
-        System.out.println(dir);
+		File dir = getDir();
+		System.out.println(dir);
 
-    }
+	}
 
-    public static File getDir() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("请输入文件夹路径: ");
-        while (true) {
-            String path = sc.nextLine();
-
-            File dir = new File(path);
-
-            if (!dir.exists()) {
-                System.out.println("您输入的文件夹路径不存在, 请重新输入: ");
-            } else if (dir.isFile()) {
-                System.out.println("您输入的是一个文件路径, 请重新输入一个文件夹路径: ");
-            } else {
-                return dir;
-            }
-        }
-    }
+	public static File getDir() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入文件夹路径: ");
+		while (true) {
+			// 接收
+			String path = sc.nextLine();
+			// 封装为文件类对象
+			File dir = new File(path);
+			// 判断是否存在
+			if (!dir.exists()) {
+				System.out.println("您输入的路径不存在！！,请重新输入:");
+			} else if (dir.isFile()) { // 判断是否是文件
+				System.out.println("您输入的是一个文件路径,请重新输入一个文件夹路径:");
+			} else { // 如果上面条件都不满足，那就是一个文件夹路径了，因为电脑里不是文件就是文件夹
+				return dir;
+			}
+		}
+	}
 }

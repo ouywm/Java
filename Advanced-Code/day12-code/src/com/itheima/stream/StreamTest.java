@@ -44,6 +44,9 @@ public class StreamTest {
 	}
 }
 
+/**
+ * 演员类
+ */
 class Actor {
 	private String name;
 

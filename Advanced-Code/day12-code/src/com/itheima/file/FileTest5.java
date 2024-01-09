@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.function.BiConsumer;
 
-public class FileTest5 {
+public class FileTest5  {
     /*
         需求：键盘录入一个文件夹路径，统计文件夹中每种文件的个数并打印（考虑子文件夹）
             打印格式如下：
@@ -61,7 +61,7 @@ public class FileTest5 {
 					// 都不满足就是没有后缀
 					count++;
 				}
-			} else { // 代码走到这，代表是文件夹
+			} else { // 代码走到这，代表是文件+夹
 				// 先判断是不是空的，不是空
 				if (file.listFiles() != null) {
 					// 递归调用

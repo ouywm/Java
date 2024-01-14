@@ -1,4 +1,4 @@
-package com.itheima.stream;
+package com.itheima.stream.test;
 
 import java.io.*;
 

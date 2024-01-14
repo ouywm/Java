@@ -34,6 +34,5 @@ public class FileWriterDemo1 {
 
         fw.close();
 
-
     }
 }

@@ -40,6 +40,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		this.setVisible(true);
 	}
 
+	/**
+	 * 初始化窗体内容
+	 */
 	public void initView() {
 		//1. 添加用户名文字
 		JLabel usernameText = new JLabel(new ImageIcon("puzzlegame\\image\\login\\用户名.png"));
@@ -112,6 +115,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 	}
 
 
+	/**
+	 * 初始化窗口
+	 */
 	public void initJFrame() {
 		this.setSize(488, 430);//设置宽高
 		this.setTitle("拼图 登录");//设置标题
@@ -121,8 +127,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		this.setLayout(null);//取消内部默认布局
 	}
 
-
-	//点击
+	/**
+	 * 点击
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == login) {
@@ -171,7 +178,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		}
 	}
 
-
+	/**
+	 * 显示弹窗
+	 */
 	public void showJDialog(String content) {
 		//创建一个弹框对象
 		JDialog jDialog = new JDialog();
@@ -193,7 +202,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		jDialog.setVisible(true);
 	}
 
-	//按下不松
+	/**
+	 * 按下不松
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getSource() == login) {
@@ -204,7 +215,9 @@ public class LoginJFrame extends JFrame implements MouseListener {
 	}
 
 
-	//松开按钮
+	/**
+	 * 松开按钮
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.getSource() == login) {
@@ -214,19 +227,25 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		}
 	}
 
-	//鼠标划入
+	/**
+	 * 鼠标划入
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
-	//鼠标划出
+	/**
+	 * 鼠标划出
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 
 	}
 
-	//判断用户在集合中是否存在
+	/**
+	 * 判断用户在集合中是否存在
+	 */
 	public boolean contains(User userInput) {
 		for (int i = 0; i < allUsers.size(); i++) {
 			User rightUser = allUsers.get(i);

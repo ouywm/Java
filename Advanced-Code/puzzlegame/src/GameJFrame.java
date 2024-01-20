@@ -209,7 +209,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		// 设置界面宽高
 		setSize(603, 680);
 		// 设置界面标题
-		setTitle("拼图单击小游戏");
+		setTitle("拼图 小游戏");
 		// 设置页面置顶
 		setAlwaysOnTop(true);
 		// 设置页面居中
@@ -218,7 +218,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		// 取消默认的布局方式
 		setLayout(null);
-		// 给整个界面做监听时间
+		// 给整个界面做监听事件
 		addKeyListener(this);
 
 	}

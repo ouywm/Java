@@ -1,5 +1,9 @@
 package com.itheima.stream.commonsio;
 
+import cn.hutool.core.io.FileUtil;
+
+import java.io.File;
+
 public class CommonsiODemo1 {
 	/*
           FileUtils类
@@ -18,6 +22,8 @@ public class CommonsiODemo1 {
                 public static void write(String data, OutputStream output)          写出数据
          */
 	public static void main(String[] args) {
+
+		FileUtil.copyFile(new File(""),new File(""));
 
 	}
 }

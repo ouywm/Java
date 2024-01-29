@@ -37,7 +37,7 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		initView();
 
 		//让当前界面显示出来
-		this.setVisible(true);
+		setVisible(true);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class LoginJFrame extends JFrame implements MouseListener {
 	private void readUserInfo() {
 		//读取数据
 		List<String> userInfoStrList = FileUtil.readUtf8Lines("D:\\userinfo.txt");
-		// 遍历集合
+		// 遍历集合,获取里面的每一份用户数据
 		for (String str : userInfoStrList) {
 			// 根据规则做切割
 			String[] arr1 = str.split("&");
@@ -59,7 +59,6 @@ public class LoginJFrame extends JFrame implements MouseListener {
 			// 将数据添加到集合
 			allUsers.add(u);
 		}
-		System.out.println(allUsers);
 	}
 
 	/**
@@ -176,7 +175,6 @@ public class LoginJFrame extends JFrame implements MouseListener {
 				//调用showJDialog方法并展示弹框
 				showJDialog("用户名或者密码为空");
 
-
 			} else if (!codeInput.equalsIgnoreCase(rightCode.getText())) {
 				showJDialog("验证码输入错误");
 			} else if (contains(userInfo)) {
@@ -192,6 +190,10 @@ public class LoginJFrame extends JFrame implements MouseListener {
 			}
 		} else if (e.getSource() == register) {
 			System.out.println("点击了注册按钮");
+			// 关闭当前登录页面
+			setVisible(false);
+			// 显示注册页面
+			new RegisterJFrame(allUsers);
 		} else if (e.getSource() == rightCode) {
 			System.out.println("更换验证码");
 			//获取一个新的验证码

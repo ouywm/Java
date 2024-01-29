@@ -1,3 +1,4 @@
+import cn.hutool.core.io.FileUtil;
 import domain.User;
 import util.CodeUtil;
 
@@ -5,15 +6,11 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginJFrame extends JFrame implements MouseListener {
 
-	static ArrayList<User> allUsers = new ArrayList<>();
-
-	static {
-		allUsers.add(new User("zhangsan", "123"));
-		allUsers.add(new User("lisi", "1234"));
-	}
+	ArrayList<User> allUsers = new ArrayList<>();
 
 
 	JButton login = new JButton();
@@ -29,15 +26,40 @@ public class LoginJFrame extends JFrame implements MouseListener {
 
 
 	public LoginJFrame() {
+
+		// 初始化用户信息
+		readUserInfo();
+
 		//初始化界面
 		initJFrame();
 
 		//在这个界面中添加内容
 		initView();
 
-
 		//让当前界面显示出来
 		this.setVisible(true);
+	}
+
+	/**
+	 * 作用：初始化用户信息，将用户信息添加到allUsers集合
+	 */
+	private void readUserInfo() {
+		//读取数据
+		List<String> userInfoStrList = FileUtil.readUtf8Lines("D:\\userinfo.txt");
+		// 遍历集合
+		for (String str : userInfoStrList) {
+			// 根据规则做切割
+			String[] arr1 = str.split("&");
+			String[] user = arr1[0].split("=");
+			String[] password = arr1[1].split("=");
+
+			// 根据分割出来的数据创建对象
+			User u = new User(user[1], password[1]);
+
+			// 将数据添加到集合
+			allUsers.add(u);
+		}
+		System.out.println(allUsers);
 	}
 
 	/**
@@ -257,6 +279,5 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		//循环结束之后还没有找到就表示不存在
 		return false;
 	}
-
 
 }

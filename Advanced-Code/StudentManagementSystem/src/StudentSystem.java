@@ -80,8 +80,8 @@ public class StudentSystem {
 		if (list.isEmpty()) {
 			System.out.println("当前无学生信息，请添加后再查询");
 		} else {
+			System.out.println("id\t\t姓名\t\t年龄\t\t\t家庭住址");
 			list.iterator().forEachRemaining(stu -> {
-				System.out.println("id\t\t姓名\t\t年龄\t\t\t家庭住址");
 				System.out.println(stu.getId() + '\t' + stu.getName() + '\t' + stu.getAge() + '\t' + stu.getHomeAddress());
 			});
 		}

@@ -15,7 +15,6 @@ public class RegisterJFrame extends JFrame {
 		//让显示显示出来，建议写在最后
 		this.setVisible(true);
 
-
 		getContentPane();
 	}
 }

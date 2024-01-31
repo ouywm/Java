@@ -71,7 +71,6 @@ public class LoginJFrame extends JFrame implements MouseListener {
 		this.getContentPane().add(usernameText);
 
 		//2.添加用户名输入框
-
 		username.setBounds(195, 134, 200, 30);
 		this.getContentPane().add(username);
 

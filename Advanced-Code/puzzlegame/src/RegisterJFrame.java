@@ -1,3 +1,4 @@
+import cn.hutool.core.io.FileUtil;
 import domain.User;
 
 import javax.swing.*;
@@ -33,6 +34,45 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == submit) {
 			System.out.println("注册");
+			// 用户名，密码不能为空
+			if (username.getText().length() == 0 || password.getText().length() == 0 || rePassword.getText().length() == 0) {
+				showDialog("用户名，密码不能为空");
+				// 如果都为空，下面的判断就不需要执行了
+				return;
+			}
+			// 判断两次密码输入是否一致
+			if (!password.getText().equals(rePassword.getText())) {
+				showDialog("两次密码输入不一致");
+				return;
+			}
+			// 判断用户名密码输入格式是否正确
+			if (!username.getText().matches("[a-zA-Z0-9]{4,16}")) {
+				showDialog("用户名不符合规则");
+				return;
+			}
+			if (!password.getText().matches("\\S*(?=\\S{6,})(?=\\S*\\d)(?=\\S*[a-z])\\S*")) {
+				showDialog("密码不符合规则，至少一个小写字母，1个数字，长度至少六位");
+				return;
+			}
+
+			// 判断用户名是否已经存在
+			if (containsUsername(username.getText())) {
+				showDialog("用户已经存在，请重新输入！");
+				return;
+			}
+
+			// 添加到集合中
+			allUsers.add(new User(username.getText(), password.getText()));
+
+			// 将集合写到本地文件
+			// 需要重写toString()方法，按照自己的格式
+			FileUtil.writeLines(allUsers, "D:\\userinfo.txt", "UTF-8");
+			// 提示注册成功
+			showDialog("注册成功，可以开始登录啦！");
+			// 关闭当前注册页面，打开登录页面
+			setVisible(false);
+			// 显示登录页面
+			new LoginJFrame();
 		} else if (e.getSource() == reset) {
 			System.out.println("重置");
 			// 将输入框的内容清空
@@ -42,6 +82,27 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 		}
 	}
 
+	/**
+	 * 作用：判断用户名是否在集合中已经存在
+	 * 参数：用户名
+	 * 返回值：true：存在    false：不存在
+	 */
+	public boolean containsUsername(String username) {
+		// 遍历集合，获取每一个用户对象
+		for (User u : allUsers) {
+			// 判断用户对象的用户名跟username一样吗
+			if (u.getUsername().equals(username)) {
+				// 只要有一个一样的之间返回true
+				return true;
+			}
+		}
+		// 代码走到这说明没有一样的，返回false
+		return false;
+	}
+
+	/**
+	 * 鼠标按下不松
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getSource() == submit) {
@@ -51,6 +112,9 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 		}
 	}
 
+	/**
+	 * 鼠标松开
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.getSource() == submit) {
@@ -60,16 +124,25 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 		}
 	}
 
+	/**
+	 * 鼠标移入
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
 	}
 
+	/**
+	 * 鼠标移出
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 
 	}
 
+	/**
+	 * 初始化窗体内容
+	 */
 	private void initView() {
 		//添加注册用户名的文本
 		JLabel usernameText = new JLabel(new ImageIcon("puzzlegame\\image\\register\\注册用户名.png"));
@@ -121,6 +194,9 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 		this.getContentPane().add(background);
 	}
 
+	/**
+	 * 初始化窗体
+	 */
 	private void initFrame() {
 		//对自己的界面做一些设置。
 		//设置宽高
@@ -151,7 +227,7 @@ public class RegisterJFrame extends JFrame implements MouseListener {
 			jLabel.setBounds(0, 0, 200, 150);
 			jDialog.add(jLabel);
 			//给弹框设置大小
-			jDialog.setSize(200, 150);
+			jDialog.setSize(250, 150);
 			//要把弹框在设置为顶层 -- 置顶效果
 			jDialog.setAlwaysOnTop(true);
 			//要让jDialog居中

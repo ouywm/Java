@@ -18,6 +18,7 @@
       <module fileurl="file://$PROJECT_DIR$/day11-code/day11-code.iml" filepath="$PROJECT_DIR$/day11-code/day11-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/day12-code/day12-code.iml" filepath="$PROJECT_DIR$/day12-code/day12-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/day13-code/day13-code.iml" filepath="$PROJECT_DIR$/day13-code/day13-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/diary/diary.iml" filepath="$PROJECT_DIR$/diary/diary.iml" />
       <module fileurl="file://$PROJECT_DIR$/puzzlegame/puzzlegame.iml" filepath="$PROJECT_DIR$/puzzlegame/puzzlegame.iml" />
     </modules>
   </component>

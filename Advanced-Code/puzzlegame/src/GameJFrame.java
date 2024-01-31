@@ -1,12 +1,14 @@
+import cn.hutool.core.io.IoUtil;
+import domain.GameInfo;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 /**
  * 游戏界面
@@ -17,8 +19,8 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 	int[][] data = new int[4][4];
 
 	// 空白方块二维数组位置
-	int x = 0;
-	int y = 0;
+	int X = 0;
+	int Y = 0;
 
 	// 记录当前展示图片的路径
 	String path = "D:\\Codes\\Codes\\Advanced-Code\\puzzlegame\\image\\animal\\animal3\\";
@@ -43,6 +45,22 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 	JMenuItem BeautifulWoman = new JMenuItem("美女");
 	JMenuItem zoon = new JMenuItem("动物");
 	JMenuItem movement = new JMenuItem("运动");
+
+	JMenu saveJMenu = new JMenu("存档");
+	JMenu loadJMenu = new JMenu("读档");
+
+	JMenuItem saveItem0 = new JMenuItem("存档0(空)");
+	JMenuItem saveItem1 = new JMenuItem("存档1(空)");
+	JMenuItem saveItem2 = new JMenuItem("存档2(空)");
+	JMenuItem saveItem3 = new JMenuItem("存档3(空)");
+	JMenuItem saveItem4 = new JMenuItem("存档4(空)");
+
+	JMenuItem loadItem0 = new JMenuItem("读档0(空)");
+	JMenuItem loadItem1 = new JMenuItem("读档1(空)");
+	JMenuItem loadItem2 = new JMenuItem("读档2(空)");
+	JMenuItem loadItem3 = new JMenuItem("读档3(空)");
+	JMenuItem loadItem4 = new JMenuItem("读档4(空)");
+
 
 	// 随机数
 	Random r = new Random();
@@ -89,8 +107,8 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		// 一维数组添加二维数组
 		for (int i = 0; i < tempArr.length; i++) {
 			if (tempArr[i] == 0) {
-				x = i / 4;
-				y = i % 4;
+				X = i / 4;
+				Y = i % 4;
 			}
 			data[i / 4][i % 4] = tempArr[i];
 		}
@@ -176,6 +194,25 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		// 关于我们
 		aboutJMenu.add(accountItem);
 
+		functionJMenu.add(saveJMenu);
+
+		functionJMenu.add(loadJMenu);
+
+
+		//把5个存档，添加到saveJMenu中
+		saveJMenu.add(saveItem0);
+		saveJMenu.add(saveItem1);
+		saveJMenu.add(saveItem2);
+		saveJMenu.add(saveItem3);
+		saveJMenu.add(saveItem4);
+
+		//把5个读档，添加到loadJMenu中
+		loadJMenu.add(loadItem0);
+		loadJMenu.add(loadItem1);
+		loadJMenu.add(loadItem2);
+		loadJMenu.add(loadItem3);
+		loadJMenu.add(loadItem4);
+
 
 		//给条目绑定事件
 		// 重新游戏
@@ -193,13 +230,59 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		// 关于我们
 		accountItem.addActionListener(this);
 
+		saveItem0.addActionListener(this);
+		saveItem1.addActionListener(this);
+		saveItem2.addActionListener(this);
+		saveItem3.addActionListener(this);
+		saveItem4.addActionListener(this);
+
+		loadItem0.addActionListener(this);
+		loadItem1.addActionListener(this);
+		loadItem2.addActionListener(this);
+		loadItem3.addActionListener(this);
+		loadItem4.addActionListener(this);
+
 		//将菜单里面的两个选项添加到菜单当中
 		jMenuBar.add(functionJMenu);
 		jMenuBar.add(aboutJMenu);
 
+		getGameInfo();
 
 		//给整个界面设置菜单
 		this.setJMenuBar(jMenuBar);
+	}
+
+	public void getGameInfo() {
+		// 创建file对象获取里面的文件
+		File fr = new File("D:\\Codes\\Codes\\Advanced-Code\\puzzlegame\\save");
+		// 得到File文件数组
+		File[] files = fr.listFiles();
+		// 如果等于空之间停止方法
+		if (files == null) {
+			return;
+		}
+		// 遍历数组
+		for (File file : files) {
+			// 提升作用域
+			GameInfo gi = null;
+
+			// 创建反序列化流，读取
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+				// 读取对象，强制转换成GameInfo类型
+				gi = (GameInfo) ois.readObject();
+			} catch (IOException | ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+			// 根据读取出来的对象，获取存档的步数
+			int step = gi.getStep();
+			// 获取文件名，根据第四索引，变成字符，给int变量赋值
+			int index = file.getName().charAt(4) - '0';
+
+			// 读档,菜单对象根据index索引来决定是改变哪里个子项显示内容
+			loadJMenu.getItem(index).setText("读档" + index + "(" + step + ")步");
+			// 存档
+			saveJMenu.getItem(index).setText("存档" + index + "(" + step + ")步");
+		}
 	}
 
 	/**
@@ -220,7 +303,6 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		setLayout(null);
 		// 给整个界面做监听事件
 		addKeyListener(this);
-
 	}
 
 	@Override
@@ -246,7 +328,6 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 			this.getContentPane().add(background);
 			//刷新界面
 			this.getContentPane().repaint();
-
 		}
 	}
 
@@ -261,44 +342,44 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 		int code = e.getKeyCode();
 		if (code == 37) {
 			System.out.println("左");
-			if (y == 3) {
+			if (Y == 3) {
 				return;
 			}
-			data[x][y] = data[x][y + 1];
-			data[x][y + 1] = 0;
-			y++;
+			data[X][Y] = data[X][Y + 1];
+			data[X][Y + 1] = 0;
+			Y++;
 			// 每次移动++
 			step++;
 			initImage();
 		} else if (code == 38) {
-			if (x == 3) {
+			if (X == 3) {
 				return;
 			}
-			data[x][y] = data[x + 1][y];
-			data[x + 1][y] = 0;
-			x++;
+			data[X][Y] = data[X + 1][Y];
+			data[X + 1][Y] = 0;
+			X++;
 			// 每次移动++
 			step++;
 			initImage();
 		} else if (code == 39) {
 			System.out.println("右");
-			if (y == 0) {
+			if (Y == 0) {
 				return;
 			}
-			data[x][y] = data[x][y - 1];
-			data[x][y - 1] = 0;
-			y--;
+			data[X][Y] = data[X][Y - 1];
+			data[X][Y - 1] = 0;
+			Y--;
 			// 每次移动++
 			step++;
 			initImage();
 		} else if (code == 40) {
 			System.out.println("下");
-			if (x == 0) {
+			if (X == 0) {
 				return;
 			}
-			data[x][y] = data[x - 1][y];
-			data[x - 1][y] = 0;
-			x--;
+			data[X][Y] = data[X - 1][Y];
+			data[X - 1][Y] = 0;
+			X--;
 			// 每次移动++
 			step++;
 			initImage();
@@ -362,25 +443,23 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 			System.exit(0);
 		} else if (source == accountItem) {
 			System.out.println("公众号");
+			// 创建集合
+			Properties prop = new Properties();
 
-			//创建一个弹框对象
-			JDialog jDialog = new JDialog();
-			//创建一个管理图片的容器对象JLabel
-			JLabel jLabel = new JLabel(new ImageIcon("puzzlegame\\image\\区.jpg"));
-			//设置位置和宽高
-			jLabel.setBounds(0, 0, 258, 258);
-			//把图片添加到弹框当中
-			jDialog.getContentPane().add(jLabel);
-			//给弹框设置大小
-			jDialog.setSize(344, 344);
-			//让弹框置顶
-			jDialog.setAlwaysOnTop(true);
-			//让弹框居中
-			jDialog.setLocationRelativeTo(null);
-			//弹框不关闭则无法操作下面的界面
-			jDialog.setModal(true);
-			//让弹框显示出来
-			jDialog.setVisible(true);
+			// 创建字节输入流读取配置文件
+			try(FileInputStream fis = new FileInputStream("D:\\Codes\\Codes\\Advanced-Code\\puzzlegame\\game.properties;");){
+				// 读取到集合中
+				prop.load(fis);
+			}
+			 catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
+
+
+			// 根据键找值，转换成String字符串类型
+			String path = (String) prop.get("account");
+			// 调用显示弹窗方法
+			showJDialog(path);
 		} else if (source == BeautifulWoman) {
 			System.out.println("美女");
 			// 创建File对象，关联路径
@@ -411,7 +490,82 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 			initData();
 			// 重新加载图片位置，打乱图片
 			initImage();
+		} else if (source == saveItem0 || source == saveItem1 || source == saveItem2 || source == saveItem3 || source == saveItem4) {
+			System.out.println("存档");
+			// 获取当前是哪个存档被点击了，将其中的序号获取出来
+			JMenuItem item = (JMenuItem) source;
+			String str = item.getText();
+			int index = str.charAt(2) - '0';
+			try {
+				// 创建序列化流
+				//D:\Codes\Codes\Advanced-Code\puzzlegame\save
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\Codes\\Codes\\Advanced-Code\\puzzlegame\\save\\save" + index + ".data"));
+				// 创建数据对象
+				GameInfo gi = new GameInfo(data, X, Y, path, step);
+				// 写入本地文件中
+				IoUtil.writeObj(oos, true, gi);
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
+			// 修该存档展示信息，因为已经存档，不再是空
+			//存档0(步数)
+			item.setText("存档" + index + "(" + step + ")步");
+			// 修该读档展示信息，因为已经存档，不再是空
+			loadJMenu.getItem(index).setText("读档" + index + "(" + step + ")步");
+
+		} else if (source == loadItem0 || source == loadItem1 || source == loadItem2 || source == loadItem3 || source == loadItem4) {
+			System.out.println("读档");
+			// 获取当前是哪个存档被点击了，将其中的序号获取出来
+			JMenuItem item = (JMenuItem) source;
+			// 获取文本
+			String str = item.getText();
+			// 获取二号索引的元素减去0字符，变成字符，转成int
+			int index = str.charAt(2) - '0';
+			// 提高作用域
+			GameInfo gi = null;
+			try {
+				// 创建反序列化流对象读取文件
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream("D:\\Codes\\Codes\\Advanced-Code\\puzzlegame\\save\\save" + index + ".data"));
+				// 读取对象
+				gi = (GameInfo) ois.readObject();
+				// 如果读取出来的对象是空之间return
+				if (gi == null) {
+					return;
+				}
+			} catch (IOException | ClassNotFoundException ex) {
+				throw new RuntimeException(ex);
+			}
+			// 获取读出来对象的数据给当前类成员变量赋值
+			data = gi.getData();
+			X = gi.getX();
+			Y = gi.getY();
+			step = gi.getStep();
+			path = gi.getPath();
+
+			// 重新刷新界面加载游戏
+			initImage();
 		}
+	}
+
+	private static void showJDialog(String filepath) {
+		//创建一个弹框对象
+		JDialog jDialog = new JDialog();
+		//创建一个管理图片的容器对象JLabel
+		JLabel jLabel = new JLabel(new ImageIcon(filepath));
+		//设置位置和宽高
+		jLabel.setBounds(0, 0, 258, 258);
+		//把图片添加到弹框当中
+		jDialog.getContentPane().add(jLabel);
+		//给弹框设置大小
+		jDialog.setSize(344, 344);
+		//让弹框置顶
+		jDialog.setAlwaysOnTop(true);
+		//让弹框居中
+		jDialog.setLocationRelativeTo(null);
+		//弹框不关闭则无法操作下面的界面
+		jDialog.setModal(true);
+		//让弹框显示出来
+		jDialog.setVisible(true);
 	}
 
 	/**

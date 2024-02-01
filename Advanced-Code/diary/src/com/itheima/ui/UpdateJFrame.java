@@ -34,6 +34,7 @@ public class UpdateJFrame extends JFrame implements ActionListener {
         Object obj = e.getSource();
         if(obj == update){
             System.out.println("修改按钮被点击了");
+
         }else if(obj == cancel){
             System.out.println("取消按钮被点击了");
         }

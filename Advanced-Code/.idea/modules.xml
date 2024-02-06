@@ -20,7 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/day13-code/day13-code.iml" filepath="$PROJECT_DIR$/day13-code/day13-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/diary/diary.iml" filepath="$PROJECT_DIR$/diary/diary.iml" />
       <module fileurl="file://$PROJECT_DIR$/multithreading/multithreading.iml" filepath="$PROJECT_DIR$/multithreading/multithreading.iml" />
+      <module fileurl="file://$PROJECT_DIR$/networkprogramming/networkprogramming.iml" filepath="$PROJECT_DIR$/networkprogramming/networkprogramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/puzzlegame/puzzlegame.iml" filepath="$PROJECT_DIR$/puzzlegame/puzzlegame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/threadpool/threadpool.iml" filepath="$PROJECT_DIR$/threadpool/threadpool.iml" />
     </modules>
   </component>
 </project>
